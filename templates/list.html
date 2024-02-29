@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+{% block title %}List Pets{% endblock %}
+{% block content %} 
+
+<h1>Pets</h1>
+
+<div class="row pets-listing">
+    {% for pet in pets%}
+    <div class = "col-3">
+    <img src="{{pet.photo_url}}" alt="{{pet.name}}" class="img-thumbnail">
+    <li><a href="/{{pet.id}}">{{pet.name}}</a></li>
+    {% if pet.available%} <b> is available! </b> {%endif%}
+    </div>
+    {%else%}
+    <div class="col-12">No pets yet</div>
+    {%endfor%}
+
+</div>
+
+<a  class="btn btn-info" href="{{url_for('add_pet')}}"> Add a Pet</a>
+
+{%endblock%}
